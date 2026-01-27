@@ -1,0 +1,12 @@
+# Node / build outputs
+node_modules/
+dist/
+main.js.map
+
+# Environment
+.env
+
+# IDE
+.idea/
+.vscode/
+/data.json

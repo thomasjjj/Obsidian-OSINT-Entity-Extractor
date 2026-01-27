@@ -3,7 +3,7 @@ import path from "path";
 import esbuild from "esbuild";
 
 const isWatch = process.argv.includes("--watch");
-const outdir = "dist";
+const outdir = ".";
 
 /** Copy static plugin assets (manifest, styles) to dist */
 function copyStatic() {

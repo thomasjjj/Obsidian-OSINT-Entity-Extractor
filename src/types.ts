@@ -16,7 +16,7 @@ export interface PluginSettings {
 }
 
 export const DEFAULT_SETTINGS: PluginSettings = {
-  model: "gpt-5.2",
+  model: "gpt-5-mini",
   outputFolder: "articles",
   defaultTags: "news",
   openAfterCreate: true,

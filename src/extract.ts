@@ -59,25 +59,29 @@ export async function fetchAndExtract(url: string, maxChars: number): Promise<Ex
 
   const html = resp.text;
   const dom = new JSDOM(html, { url });
-  const reader = new Readability(dom.window.document);
-  const article = reader.parse();
 
-  const text = article?.textContent?.trim() ||
-    dom.window.document.querySelector("article")?.textContent?.trim() ||
-    dom.window.document.body?.textContent?.trim() ||
-    "";
+  try {
+    const reader = new Readability(dom.window.document);
+    const article = reader.parse();
 
-  const published = extractPublished(dom.window.document);
-  const authors = extractAuthors(article?.byline);
-  const sourceGuess = guessSource(url);
+    const text =
+      article?.textContent?.trim() ||
+      dom.window.document.querySelector("article")?.textContent?.trim() ||
+      dom.window.document.body?.textContent?.trim() ||
+      "";
 
-  dom.window.close();
+    const published = extractPublished(dom.window.document);
+    const authors = extractAuthors(article?.byline);
+    const sourceGuess = guessSource(url);
 
-  return {
-    title: article?.title?.trim() || "",
-    authors,
-    published,
-    text: trimText(text, maxChars),
-    sourceGuess
-  };
+    return {
+      title: article?.title?.trim() || "",
+      authors,
+      published,
+      text: trimText(text, maxChars),
+      sourceGuess
+    };
+  } finally {
+    dom.window.close();
+  }
 }
