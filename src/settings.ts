@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting, debounce, TextAreaComponent, Notice, createFragment } from "obsidian";
+import { App, PluginSettingTab, Setting, debounce, TextAreaComponent, Notice } from "obsidian";
 import type UrlToVaultPlugin from "./main";
 import { PROMPT_TEMPLATE } from "./prompt";
 import { normalizeTags } from "./tags";
@@ -19,18 +19,21 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     try {
       containerEl.createEl("h2", { text: "OSINT Entity Extractor" });
 
+      const repoDesc = (() => {
+        const frag = document.createDocumentFragment();
+        const link = document.createElement("a");
+        link.href = "https://github.com/thomasjjj/ObsidiaNER";
+        link.textContent = "thomasjjj/ObsidiaNER (issues)";
+        link.target = "_blank";
+        link.rel = "noopener";
+        frag.append("GitHub: ");
+        frag.appendChild(link);
+        return frag;
+      })();
+
       new Setting(containerEl)
         .setName("Report a bug / view source")
-        .setDesc(
-          createFragment((frag) => {
-            frag.append("GitHub: ");
-            frag.createEl("a", {
-              href: "https://github.com/thomasjjj/ObsidiaNER",
-              text: "thomasjjj/ObsidiaNER (issues)",
-              attr: { target: "_blank", rel: "noopener" }
-            });
-          })
-        )
+        .setDesc(repoDesc)
         .addExtraButton((btn) =>
           btn
             .setIcon("bug")
