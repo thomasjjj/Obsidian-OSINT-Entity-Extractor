@@ -73,20 +73,124 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - An OpenAI API key with access to the Responses API.
 - Node.js 18+ and npm to build locally.
 
+## New to Obsidian? (2-minute orientation)
+
+| Term | What it means |
+|---|---|
+| Vault | The folder on your computer where your notes live. Obsidian reads/writes files inside this folder. |
+| Note | A Markdown (`.md`) file in your vault. |
+| Community plugins | Optional add-ons you can install in Obsidian to add features. |
+| Command Palette | A search box in Obsidian that lets you run commands (like “Import article from URL…”). |
+
+**Where to find things in Obsidian:**
+- **Settings:** click the ⚙️ gear icon (usually bottom-left).
+- **Community plugins:** Settings → Community plugins.
+- **Command Palette:** press `Ctrl + P` (Windows/Linux) or `Cmd + P` (macOS).
+
 
 ## Installation
 
-### Install via Obsidian Community Plugins (recommended)
-1. In Obsidian, open **Settings → Community plugins**.
-2. If prompted, turn off **Safe mode**.
-3. Click **Browse** and search for **OSINT Entity Extractor**.
-4. Click **Install**, then **Enable**.
+### Option A: Install via Obsidian Community Plugins (recommended)
 
-### Manual install (alternative)
-1. Download `main.js` and `manifest.json` from the latest GitHub Release.
-2. Create the folder: `.obsidian/plugins/osint-ner/`
-3. Place the downloaded files in that folder.
-4. Reload Obsidian and enable the plugin in **Settings → Community plugins**.
+| Step | What to do | Where / what you should see |
+|---:|---|---|
+| 1 | Open **Settings → Community plugins** | In Obsidian |
+| 2 | If prompted, turn off **Safe mode** | This allows community plugins |
+| 3 | Click **Browse** | Opens the plugin browser |
+| 4 | Search for **OSINT Entity Extractor** | Use the search box |
+| 5 | Click **Install**, then **Enable** | Plugin is now active |
+
+---
+
+### Option B: Manual install (no coding required)
+
+Use this if the plugin isn’t showing up in Community plugins yet.
+
+#### Manual install steps
+
+| Step | What to do | Notes / common mistakes |
+|---:|---|---|
+| 1 | Open the plugin’s **GitHub Releases** page | Make sure you’re on the correct repo |
+| 2 | Click the **latest release** | It’s usually the top one |
+| 3 | Under **Assets**, download `main.js` and `manifest.json` | **Do not** download “Source code (zip)” — Obsidian needs the individual files |
+| 4 | Open your vault folder in File Explorer / Finder | This is the folder that contains your notes |
+| 5 | Find the `.obsidian` folder inside your vault | On Windows/macOS it may be hidden (see below) |
+| 6 | Create this folder path (if it doesn’t already exist): `.obsidian/plugins/osint-ner/` | The folder name must be **exactly** `osint-ner` |
+| 7 | Copy `main.js` and `manifest.json` into `.obsidian/plugins/osint-ner/` | Optional: copy `styles.css` too, **only if** it exists in Assets |
+| 8 | Restart Obsidian | Fully close and reopen if needed |
+| 9 | Go to **Settings → Community plugins** and enable **OSINT Entity Extractor** | It will appear under **Installed plugins** |
+
+#### What the final folder should look like
+
+| Location | Should contain |
+|---|---|
+| `YourVault/.obsidian/plugins/osint-ner/` | `main.js`, `manifest.json` (and optionally `styles.css`) |
+
+#### If you can’t see the `.obsidian` folder (hidden folders)
+
+| Platform | What to do |
+|---|---|
+| Windows | File Explorer → **View** → tick **Hidden items** |
+| macOS | In Finder press **Cmd + Shift + .** (toggles hidden files) |
+
+#### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| Plugin doesn’t appear in **Installed plugins** | Check the folder is **exactly** `.obsidian/plugins/osint-ner/` and the files are directly inside it (not nested one folder deeper). |
+| You downloaded “Source code (zip)” | Go back to the release and download from **Assets** instead. |
+| `.obsidian` folder still missing | Confirm you’re in the correct vault folder (the one Obsidian is using). |
+
+
+
+
+
+## Setting up your OpenAI API key
+
+### What is an API key?
+
+| Item | Meaning |
+|---|---|
+| OpenAI API key | A secret code that lets this plugin securely talk to OpenAI’s servers to format notes and extract entities. |
+| Why you need it | Without a key, the plugin can’t run the OpenAI step (so it can’t generate the structured note). |
+| Keep it private | Treat it like a password — don’t share it in screenshots, notes, GitHub issues, or messages. |
+| Costs | OpenAI API usage can incur cost. The plugin trims long articles to reduce usage. |
+
+---
+
+### Create an OpenAI API key
+
+| Step | What to do | What to look for |
+|---:|---|---|
+| 1 | Sign in to your OpenAI account on the OpenAI platform | Use the account you want billed |
+| 2 | Go to **API keys** in your account settings | You should see a list of keys (or an empty list) |
+| 3 | Click **Create new secret key** | A new key will be generated |
+| 4 | Copy the key and store it somewhere safe | You may only be shown the full key once |
+
+---
+
+### Add the key to the plugin in Obsidian
+
+| Step | What to do | Where / what you should see |
+|---:|---|---|
+| 1 | In Obsidian, open **Settings** | Obsidian Settings panel |
+| 2 | Go to **OSINT Entity Extractor** | Plugin settings section |
+| 3 | Paste the key into **OpenAI API key** | Input field for the key |
+| 4 | Click **Test OpenAI key** (if available) | Confirms your key works before importing an article |
+
+---
+
+### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| “Invalid key” / test fails | Re-copy the key from OpenAI (watch for missing characters/spaces). Make sure you pasted the full key. |
+| Works in ChatGPT but not here | ChatGPT app access is separate — you need an **OpenAI API key** from the OpenAI platform. |
+| Rate limit / temporary errors | Try again later or reduce the article length limit in plugin settings. |
+| You think the key was exposed | Revoke it in OpenAI API keys and create a new one. |
+
+
+
 
 ## Usage
 <img width="561" height="149" alt="image" src="https://github.com/user-attachments/assets/b76d4a38-26c2-41de-9329-6cbe5a7d29bd" />
