@@ -10,6 +10,24 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 
 <img width="1262" height="332" alt="image" src="https://github.com/user-attachments/assets/3549b649-40d7-49d6-8e32-5a88dc7cff4e" />
 
+## Quick start
+1. Install the plugin via **Settings → Community plugins** (search **OSINT Entity Extractor**), then **Enable** it.
+2. Open **Settings → OSINT Entity Extractor** and paste your **OpenAI API key**.
+3. Run **Import article from URL (OpenAI → note)** from the Command Palette (or click the ribbon icon).
+4. Paste a URL → the plugin creates a formatted note in your chosen output folder.
+
+> Tip: If an article is paywalled or heavily scripted, extraction may be thin. In those cases, use the “Append raw article” option or paste content manually.
+
+---
+
+> **Important (LLM output):** LLM-generated content can be inaccurate, incomplete, or misleading. Treat outputs as a drafting aid and always verify key facts against the original article text and other sources.
+
+---
+
+> **Human Required:** LLM-generated content is amazing for gathering, processing, and organising information. It does not replace the analyst. This tool is designed for rapid familiarisation, background research, and building the foundations of an investigation. 
+
+---
+
 
 ## 🍃 Note: This tool relies on Open AI API and uses LLM analysis. LLMs use a lot of power and water so please consider donating to:
 
@@ -55,12 +73,20 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - An OpenAI API key with access to the Responses API.
 - Node.js 18+ and npm to build locally.
 
-## Install / build
-1) Install dependencies: `npm install`  
-2) Build the plugin: `npm run build` (outputs `main.js` and `main.js.map` at the repo root and copies `manifest.json`).  
-3) Create a folder in your vault: `<vault>/.obsidian/plugins/osint-ner/`.  
-4) Copy `manifest.json`, `main.js`, and `main.js.map` into that folder (include `styles.css` if you add one).  
-5) Reload Obsidian's plugins list and enable **OSINT Entity Extractor**.
+
+## Installation
+
+### Install via Obsidian Community Plugins (recommended)
+1. In Obsidian, open **Settings → Community plugins**.
+2. If prompted, turn off **Safe mode**.
+3. Click **Browse** and search for **OSINT Entity Extractor**.
+4. Click **Install**, then **Enable**.
+
+### Manual install (alternative)
+1. Download `main.js` and `manifest.json` from the latest GitHub Release.
+2. Create the folder: `.obsidian/plugins/osint-ner/`
+3. Place the downloaded files in that folder.
+4. Reload Obsidian and enable the plugin in **Settings → Community plugins**.
 
 ## Usage
 <img width="561" height="149" alt="image" src="https://github.com/user-attachments/assets/b76d4a38-26c2-41de-9329-6cbe5a7d29bd" />
@@ -88,6 +114,20 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - Avoid committing `data.json` (contains stored settings/key); it is already in `.gitignore`.  
 - If extraction yields little text (paywalls, blocked sites), the prompt warns the model not to invent details; you may still want to paste content manually.  
 - OpenAI usage incurs cost; long articles are truncated at your configured limit before being sent.
+
+## Data & network usage (privacy)
+
+This plugin makes network requests to do its job:
+
+- **Fetches article content**: when you import a URL, the plugin downloads the page to extract readable text (via Readability).
+- **Sends text to OpenAI**: the extracted article text (trimmed to your configured character limit), your prompt, and any related metadata required by the request are sent to OpenAI to generate the formatted Markdown note and entity links.
+- **No analytics/telemetry**: the plugin does not include tracking or analytics. It only contacts the URL you provide and OpenAI (for processing).
+
+### Data stored locally
+- **OpenAI API key**: stored using Obsidian SecretStorage when available; otherwise stored in the plugin’s local data store.
+- **Plugin settings**: stored locally in the plugin data file (CONTRIBUTORS: do not commit this to source control).
+- **Generated notes**: saved into your chosen output folder inside the vault, plus (optionally) the raw extracted article text appended beneath the AI-formatted note.
+
 
 ## Development
 - `npm run dev` - watch mode build with esbuild.  
