@@ -6,6 +6,6 @@
   "main": "main.js",
   "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes in Obsidian.",
   "author": "thomasjjj",
-  "authorUrl": "https://example.com",
+  "authorUrl": "https://github.com/thomasjjj",
   "isDesktopOnly": false
 }
