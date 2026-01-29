@@ -14,7 +14,7 @@
     "readability",
     "article-import"
   ],
-  "author": "tomja",
+  "author": "thomasjjj",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "@types/node": "^22.7.4",
