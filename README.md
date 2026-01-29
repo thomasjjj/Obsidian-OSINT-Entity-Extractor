@@ -1,4 +1,4 @@
-# URL to Vault - Obsidian plugin
+# ObsidiaNER - OSINT entity extraction plugin 
 
 Import any readable web article into your vault, run it through OpenAI's Responses API for structured Markdown with YAML frontmatter, and save it as a clean Obsidian note.
 
