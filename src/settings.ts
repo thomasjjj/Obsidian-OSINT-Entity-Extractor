@@ -16,7 +16,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "ObsidiaNER - OSINT entity extraction plugin" });
+    containerEl.createEl("h2", { text: "OSINT Entity Extractor" });
 
     new Setting(containerEl)
       .setName("Report a bug / view source")
@@ -25,7 +25,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
           frag.append("GitHub: ");
           frag.createEl("a", {
             href: "https://github.com/thomasjjj/ObsidiaNER",
-            text: "thomasjjj/ObsidiaNER",
+            text: "thomasjjj/ObsidiaNER (issues)",
             attr: { target: "_blank", rel: "noopener" }
           });
         })
@@ -126,7 +126,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
           .onChange(async (value) => {
             const parsed = Number(value);
             const valid = !Number.isNaN(parsed) && parsed > 500 && parsed <= 50000;
-            text.inputEl.classList.toggle("url-to-vault-invalid", !valid);
+            text.inputEl.classList.toggle("osint-ner-invalid", !valid);
             text.inputEl.style.borderColor = valid ? "" : "var(--text-error, #d9534f)";
             if (valid) {
               this.plugin.settings.maxChars = parsed;
@@ -140,7 +140,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
       maxCharsInput.setAttribute("min", "500");
       maxCharsInput.setAttribute("max", "50000");
       maxCharsInput.setAttribute("step", "500");
-      maxCharsInput.classList.add("url-to-vault-number");
+      maxCharsInput.classList.add("osint-ner-number");
     }
 
     new Setting(containerEl)
@@ -291,7 +291,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     // Adjust rows and class if the textarea exists
     if (promptArea) {
       promptArea.inputEl.rows = 14;
-      promptArea.inputEl.addClass("url-to-vault-prompt-area");
+      promptArea.inputEl.addClass("osint-ner-prompt-area");
     }
   }
 }

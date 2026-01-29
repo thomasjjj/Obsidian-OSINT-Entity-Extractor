@@ -1,10 +1,10 @@
 {
-  "id": "ObsidiaNER",
-  "name": "ObsidiaNER - OSINT entity extraction plugin",
-  "version": "0.1.0",
+  "id": "osint-ner",
+  "name": "OSINT Entity Extractor",
+  "version": "0.1.1",
   "minAppVersion": "1.5.0",
   "main": "main.js",
-  "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes in Obsidian.",
+  "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes.",
   "author": "thomasjjj",
   "authorUrl": "https://github.com/thomasjjj",
   "isDesktopOnly": false

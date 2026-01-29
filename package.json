@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-url-to-vault",
-  "version": "0.1.0",
-  "description": "Import web articles into Obsidian via OpenAI Responses API with YAML frontmatter validation.",
+  "name": "osint-ner",
+  "version": "0.1.1",
+  "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes.",
   "main": "dist/main.js",
   "scripts": {
     "build": "node esbuild.config.mjs",

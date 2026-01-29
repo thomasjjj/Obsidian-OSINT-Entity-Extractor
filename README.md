@@ -1,4 +1,4 @@
-# ObsidiaNER - OSINT entity extraction plugin 
+# OSINT Entity Extractor 
 
 <img width="1911" height="697" alt="image" src="https://github.com/user-attachments/assets/fe2cbeeb-bd7d-4908-ba7f-c62cf5c5e33b" />
 
@@ -58,9 +58,9 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 ## Install / build
 1) Install dependencies: `npm install`  
 2) Build the plugin: `npm run build` (outputs `main.js` and `main.js.map` at the repo root and copies `manifest.json`).  
-3) Create a folder in your vault: `<vault>/.obsidian/plugins/ObsidiaNER/`.  
+3) Create a folder in your vault: `<vault>/.obsidian/plugins/osint-ner/`.  
 4) Copy `manifest.json`, `main.js`, and `main.js.map` into that folder (include `styles.css` if you add one).  
-5) Reload Obsidian's plugins list and enable **ObsidiaNER - OSINT entity extraction plugin**.
+5) Reload Obsidian's plugins list and enable **OSINT Entity Extractor**.
 
 ## Usage
 <img width="561" height="149" alt="image" src="https://github.com/user-attachments/assets/b76d4a38-26c2-41de-9329-6cbe5a7d29bd" />
@@ -69,7 +69,7 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - Ribbon: click the link icon added by the plugin.  
 - Paste a URL (the dialog now has a **Paste** button and will auto-prepend `https://` if you omit the scheme). The plugin fetches the page, trims the extracted text to the configured max characters, sends it to OpenAI, then saves the resulting note to your chosen folder. The raw extracted text is appended under its own heading (toggle-able in settings). A notice shows the saved path, and the note opens automatically if enabled.
 
-## Settings (Settings -> ObsidiaNER - OSINT entity extraction plugin)
+## Settings (Settings -> OSINT Entity Extractor)
 - **OpenAI API key**: stored in SecretStorage when available; otherwise saved with plugin data.  
 - **Model**: OpenAI model name used for formatting (default `gpt-5-mini`).  
 - **Output folder**: relative path inside your vault; created if missing.  

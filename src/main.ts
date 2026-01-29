@@ -7,7 +7,7 @@ import { ensureFrontmatterPresent, saveNoteToVault } from "./note";
 import type { ExtractedArticle } from "./types";
 import { normalizeTags } from "./tags";
 
-const SECRET_KEY_ID = "url-to-vault-openai-key";
+const SECRET_KEY_ID = "osint-ner-openai-key";
 
 function ensureHttpScheme(url: string): string {
   const trimmed = url.trim();
