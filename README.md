@@ -185,7 +185,7 @@ Stored locally:
 - Plugin settings in plugin data (do not commit `data.json`).
 - Generated notes in your chosen output folder, plus optional raw article text.
 
-## Environmental note (optional)
+## Environmental note 
 This tool relies on the OpenAI API and uses LLM analysis. LLMs consume compute and energy; please consider donating to conservation groups:
 
 | Charity | What it does | Independent / regulator reference |
