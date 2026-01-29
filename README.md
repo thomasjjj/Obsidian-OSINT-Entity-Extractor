@@ -26,7 +26,7 @@ You paste a URL -> it fetches the article text -> OpenAI formats it -> the note 
 - [Settings](#settings-settings---osint-entity-extractor)
 - [Common problems](#common-problems-fast-fixes)
 - [Data & privacy](#data--privacy)
-- [Environmental note (optional)](#environmental-note-optional)
+- [Environmental note](#environmental-note-optional)
 - [Development](#development)
 - [License](#license)
 
