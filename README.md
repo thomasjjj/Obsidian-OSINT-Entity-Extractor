@@ -92,4 +92,4 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - Source entry point: `src/main.ts`; build config: `esbuild.config.mjs`.
 
 ## License
-MIT
+GNU General Public License v3.0
