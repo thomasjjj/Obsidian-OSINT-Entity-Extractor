@@ -46,6 +46,10 @@ It currently uses the OpenAI API; however, I intend to continue developing it to
 - Appends the raw extracted article text below the AI-formatted note so you always have the original content.
 - Stores your API key via Obsidian SecretStorage when available; otherwise it falls back to plugin data.
 
+<img width="1917" height="1000" alt="image" src="https://github.com/user-attachments/assets/53fd9a98-df2e-4aab-b341-2333dbf7f7cb" />
+
+*For example, this Obsidian Vault was created by gathering a selection of articles about the band Metallica*
+
 ## Requirements
 - Obsidian 1.5.0 or newer.
 - An OpenAI API key with access to the Responses API.
