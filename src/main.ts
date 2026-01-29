@@ -16,6 +16,11 @@ function ensureHttpScheme(url: string): string {
   return `https://${trimmed}`;
 }
 
+function renderTwoStepProgress(step: 1 | 2, label: string): string {
+  const bar = step === 1 ? "▰▱" : "▰▰";
+  return `Progress ${bar} (${step}/2) ${label}`;
+}
+
 class UrlInputModal extends Modal {
   onSubmit: (url: string) => void;
   value = "";
@@ -197,7 +202,7 @@ export default class UrlToVaultPlugin extends Plugin {
       return;
     }
 
-    const progress = new Notice("Fetching article...", 0);
+    const progress = new Notice(renderTwoStepProgress(1, "Fetching article..."), 0);
 
     try {
       const meta = await fetchAndExtract(normalizedUrl, this.settings.maxChars);
@@ -206,7 +211,7 @@ export default class UrlToVaultPlugin extends Plugin {
         new Notice("No article text extracted; sending minimal content to OpenAI.", 6000);
       }
 
-      progress.setMessage("Formatting with OpenAI...");
+      progress.setMessage(renderTwoStepProgress(2, "Formatting with OpenAI..."));
 
       const promptTemplate =
         this.settings.useCustomPrompt && this.settings.customPrompt.trim()
@@ -259,6 +264,7 @@ export default class UrlToVaultPlugin extends Plugin {
         await this.app.workspace.getLeaf(true).openFile(file);
       }
 
+      progress.setMessage("Done");
       new Notice(`Saved: ${file.path}`);
     } catch (err: unknown) {
       console.error(err);
