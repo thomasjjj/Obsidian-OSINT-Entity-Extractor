@@ -22,8 +22,8 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
       const repoDesc = (() => {
         const frag = document.createDocumentFragment();
         const link = document.createElement("a");
-        link.href = "https://github.com/thomasjjj/ObsidiaNER";
-        link.textContent = "thomasjjj/ObsidiaNER (issues)";
+        link.href = "https://github.com/thomasjjj/osint-ner";
+        link.textContent = "thomasjjj/osint-ner (issues)";
         link.target = "_blank";
         link.rel = "noopener";
         frag.append("GitHub: ");
@@ -38,7 +38,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
           btn
             .setIcon("bug")
             .setTooltip("Open GitHub repository")
-            .onClick(() => window.open("https://github.com/thomasjjj/ObsidiaNER", "_blank"))
+            .onClick(() => window.open("https://github.com/thomasjjj/osint-ner", "_blank"))
         );
 
     new Setting(containerEl)

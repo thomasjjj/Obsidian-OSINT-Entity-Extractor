@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 import type { ExtractedArticle } from "./types";
 
-const USER_AGENT = "OSINT-Entity-Extractor/0.1.1 (+https://github.com/thomasjjj/ObsidiaNER)";
+const USER_AGENT = "OSINT-Entity-Extractor/0.1.1 (+https://github.com/thomasjjj/osint-ner)";
 
 function guessSource(url: string): string {
   try {

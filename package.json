@@ -2,7 +2,7 @@
   "name": "osint-ner",
   "version": "0.1.1",
   "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes.",
-  "main": "dist/main.js",
+  "main": "main.js",
   "scripts": {
     "build": "node esbuild.config.mjs",
     "dev": "node esbuild.config.mjs --watch",

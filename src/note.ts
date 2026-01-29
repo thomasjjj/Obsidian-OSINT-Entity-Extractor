@@ -18,6 +18,18 @@ export function ensureFrontmatterPresent(note: string): string {
   if (second === -1) {
     throw new Error("Model output did not include a closing YAML frontmatter delimiter ('---').");
   }
+  // Validate YAML parses to catch malformed frontmatter (bad indentation, scalars, etc.).
+  try {
+    const { parseYaml } = require("obsidian") as typeof import("obsidian");
+    const yamlBlock = note.slice(3, second).trim();
+    const parsed = parseYaml(yamlBlock);
+    if (parsed === null || typeof parsed !== "object") {
+      throw new Error("Frontmatter YAML is not an object.");
+    }
+  } catch (err: any) {
+    const msg = err?.message || "Invalid YAML frontmatter.";
+    throw new Error(`Invalid YAML frontmatter: ${msg}`);
+  }
   return note;
 }
 

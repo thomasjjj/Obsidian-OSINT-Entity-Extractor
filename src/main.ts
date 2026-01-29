@@ -170,11 +170,10 @@ export default class UrlToVaultPlugin extends Plugin {
     }
     try {
       const client = getOpenAIClient(apiKey);
-      const models = await client.models.list();
-      if (!models?.data?.length) {
-        throw new Error("Key valid but no models available to list.");
-      }
-      this.logVerbose("OpenAI key test succeeded", { modelsListed: models.data.length });
+      // Prefer a lightweight retrieve to avoid model-listing permission issues.
+      const modelToCheck = this.settings.model || "gpt-5-mini";
+      await client.models.retrieve(modelToCheck);
+      this.logVerbose("OpenAI key test succeeded", { modelChecked: modelToCheck });
     } catch (err: any) {
       const status = err?.status ?? err?.response?.status;
       if (status === 401) {
