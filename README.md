@@ -1,21 +1,25 @@
 # ObsidiaNER - OSINT entity extraction plugin 
 
-<img width="1918" height="1033" alt="image" src="https://github.com/user-attachments/assets/1fec1eca-5b08-4677-8aff-a942934805e1" />
+<img width="1911" height="697" alt="image" src="https://github.com/user-attachments/assets/fe2cbeeb-bd7d-4908-ba7f-c62cf5c5e33b" />
 
 
-Import any readable web article into your vault, run it through OpenAI's Responses API for structured Markdown with YAML frontmatter, and save it as a clean Obsidian note. This tool is designed to streamline investigation and allows for quick ingest of articles to establish a clear foundation of information pertaining to a particular topic. The entity extraction allows identification of commonality between articles and ensures that key nodes are identified quickly. 
 
-Note: This tool relies on Open AI API and uses LLM analysis. LLMs use a lot of power and water so please consider donating to:
+Import any readable web article into your vault, run it through OpenAI's Responses API for structured Markdown with YAML frontmatter, and save it as a clean Obsidian note. This tool is designed to streamline investigation and allows for quick ingest of articles to establish a clear foundation of information pertaining to a particular topic. Entity extraction allows the identification of commonalities between articles and ensures that key nodes are identified quickly. 
 
-- [Rainforest Trust](https://www.rainforesttrust.org/) — Funds protection of threatened tropical habitats; rated very highly by Charity Navigator (4-star, top score shown).  
-  - Charity Navigator profile: https://www.charitynavigator.org/ein/133500609
+It currently uses the OpenAI API; however, I intend to continue developing it to optimise efficiency and reduce resource requirements. Help and suggestions are very welcome! 
 
-- [Cool Earth](https://www.coolearth.org/) — Focuses on keeping rainforest standing via direct support to Indigenous/local communities; also reviewed as highly cost-effective by Giving What We Can.  
-  - Giving What We Can review: https://www.givingwhatwecan.org/reports/cool-earth
+<img width="1262" height="332" alt="image" src="https://github.com/user-attachments/assets/3549b649-40d7-49d6-8e32-5a88dc7cff4e" />
 
-- [Rainforest Foundation UK](https://www.rainforestfoundationuk.org/) — UK-registered charity supporting rainforest protection with governance/accountability via the Charity Commission and published accounts.  
-  - Charity Commission register entry: https://register-of-charities.charitycommission.gov.uk/charity-details/?regid=1138287&subid=0
 
+## 🍃 Note: This tool relies on Open AI API and uses LLM analysis. LLMs use a lot of power and water so please consider donating to:
+
+| Charity | What it does | Independent / regulator reference |
+|---|---|---|
+| [Rainforest Trust](https://www.rainforesttrust.org/) | Funds protection of threatened tropical habitats. | [Charity Navigator (EIN 13-3500609)](https://www.charitynavigator.org/ein/133500609) |
+| [Cool Earth](https://www.coolearth.org/) | Helps keep rainforest standing via direct support to Indigenous/local communities. | [Giving What We Can review](https://www.givingwhatwecan.org/reports/cool-earth) |
+| [Rainforest Foundation UK](https://www.rainforestfoundationuk.org/) | UK-registered rainforest protection charity with governance/accountability and published accounts. | [Charity Commission entry (No. 1138287)](https://register-of-charities.charitycommission.gov.uk/charity-details/?regid=1138287&subid=0) |
+
+# Example
 
 <img width="1069" height="435" alt="image" src="https://github.com/user-attachments/assets/857a7b00-a9ce-4476-b72a-d77cc86f0e5a" />
 
