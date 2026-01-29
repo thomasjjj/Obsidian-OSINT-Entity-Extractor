@@ -1,6 +1,6 @@
 {
   "name": "osint-ner",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes.",
   "main": "main.js",
   "scripts": {

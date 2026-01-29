@@ -1,7 +1,7 @@
 {
   "id": "osint-ner",
   "name": "OSINT Entity Extractor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minAppVersion": "1.5.0",
   "description": "Import web articles, extract OSINT-relevant entities with OpenAI, and save validated Markdown notes.",
   "author": "thomasjjj",
