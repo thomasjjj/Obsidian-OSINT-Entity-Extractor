@@ -5,7 +5,13 @@ STRICT OUTPUT RULES
 - Return ONLY the final markdown note. No commentary, no code fences.
 - The note MUST start with YAML frontmatter and end that block with a second line containing only '---'.
 - After YAML, write the note body with the headings below.
-- Wrap key named entities in [[double square brackets]] throughout the BODY only: people, organizations, countries, cities/places, weapon systems/munitions, events/operations, platforms/programs. Do NOT link generic nouns.
+- Wrap key named entities in [[double square brackets]] throughout the BODY only: people, organizations, countries, cities/places, weapon systems/munitions, events/operations, platforms/programs.
+- Do NOT link generic nouns (e.g., police, court, store, judge) unless a specific named entity is given (e.g., [[Police Scotland]], [[High Court of Justiciary]]).
+
+CRITICAL INPUT RULE
+- You are given ARTICLE TEXT below. If ARTICLE TEXT is non-empty, you MUST use it to extract names, places, dates, and entities.
+- If ARTICLE TEXT is present, you MUST NOT claim that “full article content was not provided”.
+- Only say information is missing if it truly does not appear in ARTICLE TEXT or METADATA.
 
 FRONTMATTER (STRICT YAML, OBSIDIAN PROPERTIES)
 1) Valid YAML the parser can read:
@@ -20,7 +26,7 @@ FRONTMATTER (STRICT YAML, OBSIDIAN PROPERTIES)
    - type: "news_article"
    - tags: block list of lowercase slug tags (unquoted items)
    OPTIONAL (only when present)
-   - author: single quoted string (use ONLY when exactly one author)
+   - author: quoted string (use ONLY when exactly one author)
    - authors: block list of quoted strings (use when multiple authors; never include both author and authors)
    - section: quoted string
    - language: quoted string (e.g. "en")
@@ -35,21 +41,6 @@ FRONTMATTER (STRICT YAML, OBSIDIAN PROPERTIES)
 5) Self-check before output:
    - YAML starts with '---' on its own line and ends with '---'.
    - Every key has exactly one value; lists are indented consistently; no blank/placeholder values; YAML would parse.
-
-CANONICAL YAML EXAMPLE
----
-title: "Example headline"
-source: "Example Source"
-url: "https://example.com/news/example-article"
-published: 2026-01-23
-type: "news_article"
-author: "Jane Doe"
-tags:
-  - news
-  - drones
-topics:
-  - "Air Defence"
----
 
 NOTE BODY STRUCTURE (REQUIRED HEADINGS)
 ## Summary
@@ -74,12 +65,15 @@ Group key entities with Obsidian links:
 - 5-10 bullets: verification hooks, OSINT checks, notable gaps.
 
 NOW CONVERT THIS ARTICLE
+
 URL: {url}
 
-METADATA (as extracted)
+METADATA (may be incomplete; ARTICLE TEXT overrides when present)
 title: {title}
 authors: {authors}
 published: {published}
 source: {source}
 
+ARTICLE TEXT (use this for extraction; do not ignore)
+{article_text}
 `.trim();

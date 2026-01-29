@@ -8,10 +8,7 @@ export function buildPrompt(
   defaultTags?: string | string[],
   promptTemplate: string = PROMPT_TEMPLATE
 ): string {
-  const extractionNote =
-    meta.text.length < 500
-      ? "\n\nNOTE: The extracted article text is short; the page may be paywalled or blocked. Do NOT invent missing details - format only what is provided.\n"
-      : "";
+  const articleText = meta.text.trim() || "_NO ARTICLE TEXT EXTRACTED_";
 
   const base = promptTemplate
     .replace("{url}", url)
@@ -19,7 +16,7 @@ export function buildPrompt(
     .replace("{authors}", meta.authors.join(", "))
     .replace("{published}", meta.published || "")
     .replace("{source}", meta.sourceGuess || "")
-    .replace("{article_text}", (meta.text + extractionNote).trim());
+    .replace("{article_text}", articleText);
 
   const tagsArray = Array.isArray(defaultTags)
     ? defaultTags
