@@ -1,6 +1,35 @@
 # ObsidiaNER - OSINT entity extraction plugin 
 
-Import any readable web article into your vault, run it through OpenAI's Responses API for structured Markdown with YAML frontmatter, and save it as a clean Obsidian note.
+Import any readable web article into your vault, run it through OpenAI's Responses API for structured Markdown with YAML frontmatter, and save it as a clean Obsidian note. This tool is designed to streamline investigation and allows for quick ingest of articles to establish a clear foundation of information pertaining to a particular topic. The entity extraction allows identification of commonality between articles and ensures that key nodes are identified quickly. 
+
+Note: This tool relies on Open AI API and uses LLM analysis. LLMs use a lot of power and water so please consider donating to:
+
+- [Rainforest Trust](https://www.rainforesttrust.org/) — Funds protection of threatened tropical habitats; rated very highly by Charity Navigator (4-star, top score shown).  
+  - Charity Navigator profile: https://www.charitynavigator.org/ein/133500609
+
+- [Cool Earth](https://www.coolearth.org/) — Focuses on keeping rainforest standing via direct support to Indigenous/local communities; also reviewed as highly cost-effective by Giving What We Can.  
+  - Giving What We Can review: https://www.givingwhatwecan.org/reports/cool-earth
+
+- [Rainforest Foundation UK](https://www.rainforestfoundationuk.org/) — UK-registered charity supporting rainforest protection with governance/accountability via the Charity Commission and published accounts.  
+  - Charity Commission register entry: https://register-of-charities.charitycommission.gov.uk/charity-details/?regid=1138287&subid=0
+
+
+<img width="1069" height="435" alt="image" src="https://github.com/user-attachments/assets/857a7b00-a9ce-4476-b72a-d77cc86f0e5a" />
+
+*User enters link to article in the box*
+
+
+<img width="1908" height="1034" alt="image" src="https://github.com/user-attachments/assets/14fcfb7e-0bff-40f0-868b-133076416fc3" />
+
+*Article is processed with properties, details, and analysis, with the key entities linked, and the article appended at the bottom*
+
+
+<img width="1917" height="1037" alt="image" src="https://github.com/user-attachments/assets/4f177982-0319-4d52-a673-da39d9d74097" />
+
+*Focus on rapid information extraction*
+
+
+
 
 ## What it does
 - Prompts you for a URL (command palette or ribbon button), fetches the page, and extracts article text with Mozilla Readability.
@@ -23,6 +52,8 @@ Import any readable web article into your vault, run it through OpenAI's Respons
 5) Reload Obsidian's plugins list and enable **URL to Vault**.
 
 ## Usage
+<img width="561" height="149" alt="image" src="https://github.com/user-attachments/assets/b76d4a38-26c2-41de-9329-6cbe5a7d29bd" />
+
 - Command Palette: run **Import article from URL (OpenAI -> Obsidian note)**.  
 - Ribbon: click the link icon added by the plugin.  
 - Paste a URL; the plugin fetches the page, trims the extracted text to the configured max characters, sends it to OpenAI, then saves the resulting note to your chosen folder. The raw extracted text is appended under its own heading. A notice shows the saved path, and the note opens automatically if enabled.
