@@ -38,7 +38,9 @@ class ConfirmModal extends Modal {
 
 export class UrlToVaultSettingTab extends PluginSettingTab {
   plugin: UrlToVaultPlugin;
-  private saveSettingsDebounced = debounce(() => this.plugin.saveSettings(), 500, true);
+  private saveSettingsDebounced = debounce(() => {
+    void this.plugin.saveSettings();
+  }, 500, true);
 
   constructor(app: App, plugin: UrlToVaultPlugin) {
     super(app, plugin);

@@ -118,7 +118,7 @@ export default class UrlToVaultPlugin extends Plugin {
 
     this.addCommand({
       id: "import-article-from-url",
-      name: "Import article from URL (OpenAI -> Obsidian note)",
+      name: "Import article from URL",
       callback: () => {
         openImportModal();
       }
