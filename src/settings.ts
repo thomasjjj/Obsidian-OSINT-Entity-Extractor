@@ -8,7 +8,7 @@ class ConfirmModal extends Modal {
     super(app);
   }
 
-  onOpen() {
+  override onOpen() {
     const { contentEl } = this;
     contentEl.empty();
     this.titleEl.setText(this.titleText);
@@ -31,7 +31,7 @@ class ConfirmModal extends Modal {
       );
   }
 
-  onClose() {
+  override onClose() {
     this.contentEl.empty();
   }
 }
@@ -47,7 +47,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     this.plugin = plugin;
   }
 
-  display(): void {
+  override display(): void {
     const { containerEl } = this;
     containerEl.empty();
 
@@ -334,8 +334,9 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
 
     // Adjust rows and class if the textarea exists
     if (promptArea) {
-      promptArea.inputEl.rows = 14;
-      promptArea.inputEl.addClass("osint-ner-prompt-area");
+      const input = (promptArea as TextAreaComponent).inputEl;
+      input.rows = 14;
+      input.addClass("osint-ner-prompt-area");
     }
     } catch (err) {
       console.error("Failed to render OSINT Entity Extractor settings", err);

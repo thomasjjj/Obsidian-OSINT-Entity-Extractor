@@ -31,7 +31,7 @@ class UrlInputModal extends Modal {
     this.onSubmit = onSubmit;
   }
 
-  onOpen() {
+  override onOpen() {
     const { contentEl } = this;
     contentEl.empty();
     contentEl.createEl("h2", { text: "Import article from URL" });
@@ -92,7 +92,7 @@ class UrlInputModal extends Modal {
     );
   }
 
-  onClose() {
+  override onClose() {
     this.contentEl.empty();
   }
 }
@@ -110,7 +110,7 @@ export default class UrlToVaultPlugin extends Plugin {
     }
   }
 
-  async onload() {
+  override async onload() {
     await this.loadSettings();
 
     const openImportModal = () => new UrlInputModal(this.app, (url) => void this.runImport(url)).open();
