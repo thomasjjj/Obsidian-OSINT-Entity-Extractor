@@ -1,13 +1,21 @@
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
+import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
 import obsidian from "eslint-plugin-obsidianmd";
 
 export default [
+  // Ignore build artefacts
+  {
+    ignores: ["dist/**", "node_modules/**", "main.js", "main.js.map"]
+  },
+  // Project-specific rules and language settings
   {
     files: ["src/**/*.ts"],
-    ignores: ["main.js", "main.js.map", "dist/**", "node_modules/**"],
     languageOptions: {
       parser: tsParser,
+      parserOptions: {
+        project: "./tsconfig.json"
+      },
       sourceType: "module",
       ecmaVersion: "latest",
       globals: {
@@ -16,10 +24,13 @@ export default [
       }
     },
     plugins: {
-      obsidianmd: obsidian
+      obsidianmd: obsidian,
+      "@typescript-eslint": tsEslintPlugin
     },
     rules: {
-      ...obsidian.configs.recommended.rules
+      ...obsidian.configs.recommended,
+      "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/unbound-method": "error"
     }
   }
 ];

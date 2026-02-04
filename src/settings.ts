@@ -58,7 +58,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
         const frag = document.createDocumentFragment();
         const link = document.createElement("a");
         link.href = "https://github.com/thomasjjj/obsidian-osint-ner";
-        link.textContent = "thomasjjj/obsidian-osint-ner (issues)";
+        link.textContent = "View GitHub issues";
         link.target = "_blank";
         link.rel = "noopener";
         frag.append("GitHub: ");
@@ -77,11 +77,11 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
         );
 
     new Setting(containerEl)
-      .setName("OpenAI API key")
-      .setDesc("Stored via Obsidian SecretStorage when available; otherwise saved in plugin data.")
+      .setName("API key")
+      .setDesc("Stored with Obsidian secret storage when available; otherwise saved in plugin data.")
       .addText((text) => {
         text.inputEl.type = "password";
-        text.inputEl.placeholder = "sk-...";
+        text.inputEl.placeholder = "Starts with sk-";
         void this.plugin.getApiKey().then((key) => {
           if (key) text.setValue(key);
         });
@@ -91,8 +91,8 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
       });
 
     new Setting(containerEl)
-      .setName("Test OpenAI key")
-      .setDesc("Checks the saved key against OpenAI without sending article content.")
+      .setName("Test API key")
+      .setDesc("Checks the saved key without sending article content.")
       .addButton((btn) =>
         btn
           .setButtonText("Test")
@@ -101,9 +101,9 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
             btn.setDisabled(true).setButtonText("Testing key...");
             void this.plugin
               .testApiKey()
-              .then(() => new Notice("OpenAI key looks good."))
+              .then(() => new Notice("API key looks good."))
               .catch((err: unknown) => {
-                const msg = err instanceof Error ? err.message : "OpenAI key test failed.";
+                const msg = err instanceof Error ? err.message : "API key test failed.";
                 new Notice(msg, 6000);
               })
               .finally(() => {
@@ -114,10 +114,10 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Model")
-      .setDesc("OpenAI model used for formatting (Responses API).")
+      .setDesc("Model used for formatting (responses API).")
       .addText((text) =>
         text
-          .setPlaceholder("gpt-5-mini")
+          .setPlaceholder("Example: gpt-4.1-mini")
           .setValue(this.plugin.settings.model)
           .onChange((value) => {
             this.plugin.settings.model = value.trim() || "gpt-5-mini";
@@ -130,7 +130,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
       .setDesc("Relative to your vault. Will be created if it doesn't exist.")
       .addText((text) =>
         text
-          .setPlaceholder("articles")
+          .setPlaceholder("Articles")
           .setValue(this.plugin.settings.outputFolder)
           .onChange((value) => {
             this.plugin.settings.outputFolder = value.trim();
@@ -143,7 +143,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
       .setDesc("Comma-separated tags to inject into the YAML tags list.")
       .addText((text) =>
         text
-          .setPlaceholder("news,reading")
+          .setPlaceholder("News, reading")
           .setValue(this.plugin.settings.defaultTags)
           .onChange((value) => {
             const tags = normalizeTags(value);
@@ -158,7 +158,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("Trim article text at")
-      .setDesc("Maximum number of characters sent to OpenAI (to avoid token blowups).")
+      .setDesc("Maximum number of characters sent to the model (to avoid token blowups).")
       .addText((text) =>
         text
           .setPlaceholder("12000")
@@ -184,8 +184,8 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     }
 
     new Setting(containerEl)
-      .setName("Max OpenAI retries")
-      .setDesc("Retries on transient OpenAI errors (rate limits, 5xx).")
+      .setName("Max retries")
+      .setDesc("Retries on transient model errors (rate limits, 5xx).")
       .addSlider((slider) =>
         slider
           .setLimits(0, 3, 1)
@@ -221,7 +221,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
           })
       );
 
-    new Setting(containerEl).setName("Content options").setHeading();
+    new Setting(containerEl).setName("Content").setHeading();
 
     new Setting(containerEl)
       .setName("Append raw article")
@@ -320,7 +320,7 @@ export class UrlToVaultSettingTab extends PluginSettingTab {
     let promptArea: TextAreaComponent | null = null;
     new Setting(containerEl)
       .setName("Prompt text")
-      .setDesc("Only used when 'Use custom prompt' is ON.")
+      .setDesc("Only used when the custom prompt toggle is on.")
       .addTextArea((text) => {
         promptArea = text;
         text

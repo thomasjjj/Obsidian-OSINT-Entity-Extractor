@@ -57,12 +57,11 @@ class UrlInputModal extends Modal {
         .onClick(() => {
           void (async () => {
             try {
-              const readText = navigator.clipboard?.readText;
-              if (!readText) {
+              if (!navigator.clipboard?.readText) {
                 new Notice("Clipboard unavailable in this context.");
                 return;
               }
-              const clip = await readText.call(navigator.clipboard);
+              const clip = await navigator.clipboard.readText();
               if (!clip) {
                 new Notice("Clipboard is empty.");
                 return;
@@ -143,7 +142,7 @@ export default class UrlToVaultPlugin extends Plugin {
   async getApiKey(): Promise<string> {
     if (this.app.secretStorage?.getSecret) {
       try {
-        const secret = await this.app.secretStorage.getSecret(SECRET_KEY_ID);
+        const secret = this.app.secretStorage.getSecret(SECRET_KEY_ID);
         if (secret) return secret;
       } catch (err) {
         console.warn("SecretStorage getSecret failed", err);
@@ -159,7 +158,7 @@ export default class UrlToVaultPlugin extends Plugin {
   async setApiKey(value: string): Promise<void> {
     if (this.app.secretStorage?.setSecret) {
       try {
-        await this.app.secretStorage.setSecret(SECRET_KEY_ID, value);
+        this.app.secretStorage.setSecret(SECRET_KEY_ID, value);
       } catch (err) {
         console.warn("SecretStorage setSecret failed", err);
       }
@@ -204,7 +203,7 @@ export default class UrlToVaultPlugin extends Plugin {
 
     const apiKey = await this.getApiKey();
     if (!apiKey) {
-      new Notice("Set your OpenAI API key in the plugin settings first.", 6000);
+      new Notice("Save your API key in the plugin settings first.", 6000);
       return;
     }
 
@@ -214,7 +213,7 @@ export default class UrlToVaultPlugin extends Plugin {
       const meta = await fetchAndExtract(normalizedUrl, this.settings.maxChars);
       this.logVerbose("Fetched metadata", meta);
       if (!meta.text) {
-        new Notice("No article text extracted; sending minimal content to OpenAI.", 6000);
+        new Notice("No article text extracted; sending minimal content to the model.", 6000);
       }
 
       progress.setMessage(renderTwoStepProgress(2, "Formatting with OpenAI..."));
