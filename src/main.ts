@@ -142,7 +142,7 @@ export default class UrlToVaultPlugin extends Plugin {
   async getApiKey(): Promise<string> {
     if (this.app.secretStorage?.getSecret) {
       try {
-        const secret = this.app.secretStorage.getSecret(SECRET_KEY_ID);
+        const secret = await Promise.resolve(this.app.secretStorage.getSecret(SECRET_KEY_ID));
         if (secret) return secret;
       } catch (err) {
         console.warn("SecretStorage getSecret failed", err);

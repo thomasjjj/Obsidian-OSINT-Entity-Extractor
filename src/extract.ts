@@ -49,7 +49,7 @@ function extractLinksAndImages(articleHtml: string, baseUrl: string) {
   const tempDom = new JSDOM(articleHtml || "<div></div>", { url: baseUrl });
   try {
     const doc = tempDom.window.document;
-    const anchors = Array.from(doc.querySelectorAll("a")) as HTMLAnchorElement[];
+    const anchors = Array.from(doc.querySelectorAll<HTMLAnchorElement>("a"));
     const links = anchors
       .map((a) => ({
         text: a.textContent?.trim() ?? "",
@@ -57,7 +57,7 @@ function extractLinksAndImages(articleHtml: string, baseUrl: string) {
       }))
       .filter((l) => !!l.href);
 
-    const imgs = Array.from(doc.querySelectorAll("img")) as HTMLImageElement[];
+    const imgs = Array.from(doc.querySelectorAll<HTMLImageElement>("img"));
     const images = imgs
       .map((img) => ({
         alt: img.getAttribute("alt")?.trim() ?? "",
